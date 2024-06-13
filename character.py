@@ -1,12 +1,14 @@
 import random
 
 from helpers import use_modifier, generate_stat, generate_lv0_gear
+from ancestries import ANCESTRIES
 
 class Character():
     languages = ["Common",]
     gear = []
     talents = []
     feats = []
+    hit_points = 0
 
     def __init__(self, *args):
         # TODO find a more elegant way to do this
@@ -24,12 +26,11 @@ class Character():
         self.wisdom = generate_stat()
         self.charisma = generate_stat()
 
-        # above derived attributes in case ancestry affects an attribute
-        # so I remember later - ancestries are going to be represented by a function that modifies the passed in Character instance
-        self.ancestry = None
+        # apply ancestral mutations
+        ANCESTRIES[random.randint(0,5)](self)
 
-        # derived attributes
-        self.hit_points = use_modifier(self.constitution) if use_modifier(self.constitution)>1 else 1 
+        # derived stats
+        self.hit_points += use_modifier(self.constitution) if use_modifier(self.constitution)>1 else 1 
         self.armor_class = 10+use_modifier(self.dexterity)
 
         # not numerically relevant
