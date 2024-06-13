@@ -6,6 +6,7 @@ class Character():
     languages = ["Common",]
     gear = []
     talents = []
+    feats = []
 
     def __init__(self, *args):
         # TODO find a more elegant way to do this
@@ -24,6 +25,7 @@ class Character():
         self.charisma = generate_stat()
 
         # above derived attributes in case ancestry affects an attribute
+        # so I remember later - ancestries are going to be represented by a function that modifies the passed in Character instance
         self.ancestry = None
 
         # derived attributes
