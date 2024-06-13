@@ -1,0 +1,3 @@
+ANCESTRIES = []
+BACKGROUNDS = []
+CLASSES = []
