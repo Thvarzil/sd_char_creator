@@ -11,6 +11,6 @@ def generate_stat():
 def generate_lv0_gear():
     iter = random.randint(1,4)
     gear = []
-    for i in iter:
-        gear.append(BASIC_GEAR[random.randint(1,12)])
+    for i in range(1,iter):
+        gear.append(BASIC_GEAR[random.randint(0,11)])
     return gear

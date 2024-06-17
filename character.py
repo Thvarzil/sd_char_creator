@@ -1,7 +1,7 @@
 import random
 
 from helpers import use_modifier, generate_stat, generate_lv0_gear
-from ancestries import ANCESTRIES
+from ancestries import ancestral_mutator
 
 class Character():
     languages = ["Common",]
@@ -11,14 +11,15 @@ class Character():
     hit_points = 0
 
     def __init__(self, *args):
-        # TODO find a more elegant way to do this
-        if args:
-            level = args()[0]
-        else:
-            level = 1
-
+        
+    
         # raw attributes
-        self.level = level
+        if (args): 
+            self.level=args[0] 
+        else: 
+            self.level=1
+
+        # TODO implement reroll if no stat is >=14
         self.strength = generate_stat()
         self.dexterity = generate_stat()
         self.constitution = generate_stat()
@@ -27,7 +28,7 @@ class Character():
         self.charisma = generate_stat()
 
         # apply ancestral mutations
-        ANCESTRIES[random.randint(0,5)](self)
+        ancestral_mutator(self)
 
         # derived stats
         self.hit_points += use_modifier(self.constitution) if use_modifier(self.constitution)>1 else 1 
