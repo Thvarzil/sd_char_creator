@@ -2,6 +2,7 @@ import random
 
 from helpers import use_modifier, generate_stat, generate_lv0_gear
 from ancestries import ancestral_mutator
+from classes import class_mutator
 
 class Character():
     languages = ["Common",]
@@ -36,6 +37,13 @@ class Character():
         self.armor_class = 10+use_modifier(self.dexterity)
         if self.strength>10:
             self.max_gear_slots = self.strength
+        
+        #level 1 exclusives
+        if self.level>0:
+            #apply class
+            class_mutator(self)
+            #TODO roll new hp
+            #TODO roll talents
 
         # not numerically relevant
         self.background = None
