@@ -9,6 +9,7 @@ class Character():
     talents = []
     feats = []
     hit_points = 0
+    max_gear_slots = 10
 
     def __init__(self, *args):
         
@@ -33,6 +34,8 @@ class Character():
         # derived stats
         self.hit_points += use_modifier(self.constitution) if use_modifier(self.constitution)>1 else 1 
         self.armor_class = 10+use_modifier(self.dexterity)
+        if self.strength>10:
+            self.max_gear_slots = self.strength
 
         # not numerically relevant
         self.background = None
