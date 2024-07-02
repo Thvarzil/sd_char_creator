@@ -1,4 +1,4 @@
-import random
+import random, math
 
 from helpers import use_modifier, generate_stat, generate_lv0_gear
 from ancestries import ancestral_mutator
@@ -42,9 +42,15 @@ class Character():
         if self.level>0:
             #apply class
             class_mutator(self)
-            #TODO roll new hp
+            
+            self.hit_points = random.randint(1, self.hit_die)
+            if self.constitution>10:
+                self.hit_points+=math.floor((self.constitution-10)/2)
+            else:
+                self.hit_points+=1
             #TODO roll talents
 
         # not numerically relevant
+        # TODO implement backgrounds
         self.background = None
         self.gear.append(generate_lv0_gear())
