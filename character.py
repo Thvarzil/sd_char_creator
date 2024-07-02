@@ -45,10 +45,10 @@ class Character():
             
             self.hit_points = random.randint(1, self.hit_die)
             if self.constitution>10:
-                self.hit_points+=math.floor((self.constitution-10)/2)
+                self.hit_points+=use_modifier(self.constitution)
             else:
                 self.hit_points+=1
-            #TODO roll talents
+            #TODO implement talents
 
         # not numerically relevant
         # TODO implement backgrounds
